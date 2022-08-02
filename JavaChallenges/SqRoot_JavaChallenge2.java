@@ -9,7 +9,7 @@ public class SqRoot_JavaChallenge2 {
 		
 		int x ;
 		
-		for (int i =0 ; i <= num; i++) {
+		for (int i =0 ; i <= num; ) {
 			
 			x = i*i;
 			
