@@ -1,0 +1,55 @@
+package javaPractice;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LengthOfLastWord_JavaChallenge1 {
+
+	public static void main(String[] args) {
+//Normal Way to find the count of last word		
+		//Declare the String
+		String str ="luffy is still joy boy ";
+		//split and Convert to string Array
+		String[] split = str.split(" ");
+		
+		//Get the lastword of the string
+		String lastword =  split[split.length-1];
+		System.out.println("Printing the lastword in simple method:-  " +lastword);
+		System.out.println("The length of the lastword id:-  " + lastword.length());
+
+//Doubt --> Why .length() method is not working for char Array written this code block to ask doubt		
+		//Convert the lastword to charArray
+		char[] charArry = lastword.toCharArray();
+		
+		//Declaring a counter
+		int count = 0;	
+		
+		//Iterate to find the count of char in lastword
+		for (int i = 0; i < charArry.length; i++) {
+			//System.out.println(charArry[i]);
+			count++;			
+		}
+		
+		//Print the count
+		System.out.println(count);
+
+//Collection way to find the count of last word		 
+		
+		//Declare an empty list
+		List<String> str1 = new ArrayList<String>();
+		
+		//Iterate to build the list with the given string
+		for (int j = 0; j < split.length; j++) {
+			str1.add(split[j]);			
+		}
+		//Printing the list
+		System.out.println("List is  :- " + str1);
+		
+		//Get the last word
+		String lswrd = str1.get(str1.size()-1);
+		System.out.println("Printing the lastword in collection method:-  " +lswrd);
+		System.out.println("The length of the lastword id:-  " + lswrd.length());
+
+	}
+
+}
