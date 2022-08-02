@@ -13,7 +13,7 @@ public class SqRoot_JavaChallenge2 {
 			
 			x = i*i;
 			
-			if(x==i) {
+			if(num ==i) {
 				System.out.println( " The number '"+num +"' itself the sqrt");
 				break;
 			}
