@@ -1,0 +1,86 @@
+package week4.marathon;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CreateNewOppurtunity {
+
+	public static void main(String[] args) throws InterruptedException {
+//		"Test Steps:
+//		1. Login to https://login.salesforce.com
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-notifications");
+		ChromeDriver driver = new ChromeDriver(options);
+		driver.get("https://login.salesforce.com");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.findElement(By.id("username")).sendKeys("hari.radhakrishnan@qeagle.com");
+		driver.findElement(By.id("password")).sendKeys("India$321");
+		driver.findElement(By.id("Login")).click();
+		//Thread.sleep(10000);
+
+
+//		2. Click on toggle menu button from the left corner
+		driver.findElement(By.className("slds-icon-waffle")).click();
+		Thread.sleep(3000);
+		
+//		3. Click view All and click Sales from App Launcher
+		driver.findElement(By.xpath("//button[text()='View All']")).click();
+//		WebElement dropDown1 = driver.findElement(By.xpath("//p[text()='Manage your sales process with accounts, leads, opportunities,...']"));
+//		Select select = new Select(dropDown1);
+//		select.selectByVisibleText("View All");
+  	    Thread.sleep(3000);
+		driver.findElement(By.xpath("//p[text()='Sales']")).click();
+		
+		
+//		4. Click on Opportunity tab 
+		WebElement ele = driver.findElement(By.xpath("//span[text()='Opportunities']"));
+		driver.executeScript("arguments[0].click();", ele);
+		
+
+	
+		
+//		5. Click on New button
+		driver.findElement(By.xpath("//div[text()='New']")).click();
+		
+//		6. Enter Opportunity name as 'Salesforce Automation by *Your Name*,Get the text and Store it
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("(//label[text()='Opportunity Name']/following::input)[1]")).sendKeys("Salesforce Automation by Hariprasad.M");
+		
+		Thread.sleep(3000);
+//		7. Choose close date as Today
+		driver.findElement(By.xpath("//input[@name='CloseDate']")).sendKeys("8/4/2022");
+		//Select calElement1 = new Select(calElement);
+		//calElement1.selectByVisibleText("4");
+		//driver.findElement(By.xpath("(//span[text()='4'])[1]")).click();
+		
+//		8. Select 'Stage' as Need Analysis
+		WebElement dropdownStage = driver.findElement(By.xpath("//label[text()='Stage']/following::lightning-base-combobox"));
+		dropdownStage.click();
+//		Select dropdownStage1 =new Select(dropdownStage);
+//		dropdownStage1.selectByVisibleText("Needs Analysis");
+		driver.findElement(By.xpath("//span[@title='Needs Analysis']")).click();
+		
+//		9. click Save and VerifyOppurtunity Name"
+		driver.findElement(By.xpath("//button[text()='Save']")).click();
+		String text = driver.findElement(By.xpath("//div[text()='Opportunity']/following::lightning-formatted-text")).getText();
+		System.out.println(text);
+		
+		if (text.contains("adafdHariprasad.M")) {
+			System.out.println("The text is correct");
+			
+		}
+		else {
+			System.out.println("False");
+		}
+		
+	}
+
+}
